@@ -72,7 +72,6 @@ public class MultiplayerCompat : IModPart
 
 
 
-    [SyncWorker]
     private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
     {
         if (sync.isWriting)
@@ -108,7 +107,6 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
     private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes comp)
     {
         if (sync.isWriting)
@@ -144,7 +142,6 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
     private static void SyncLoadout(SyncWorker sync, ref Loadout loadout)
     {
         if (sync.isWriting)
@@ -158,7 +155,6 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
     private static void SyncLoadoutSlot(SyncWorker sync, ref LoadoutSlot loadoutSlot)
     {
         if (sync.isWriting)
@@ -201,7 +197,6 @@ public class MultiplayerCompat : IModPart
 
     // Don't sync anything, we just want a blank instance for method calling purposes
     // We only care about shouldConstruct being true
-    [SyncWorker(shouldConstruct = true)]
     private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
     { }
 }
