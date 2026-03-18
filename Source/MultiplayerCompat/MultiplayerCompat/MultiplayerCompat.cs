@@ -76,8 +76,11 @@ public class MultiplayerCompat : IModPart
             }
         }
 
-        MP.RegisterAll();
-
+        MP.RegisterSyncWorker<CompAmmoUser>(SyncCompAmmoUser);
+        MP.RegisterSyncWorker<CompFireModes>(SyncCompFireMode);
+        MP.RegisterSyncWorker<Loadout>(SyncLoadout);
+        MP.RegisterSyncWorker<LoadoutSlot>(SyncLoadoutSlot);
+        MP.RegisterSyncWorker<ITab_Inventory>(SyncITab_Inventory, shouldConstruct: true);
         global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer),
                                                                            (() => MP.IsExecutingSyncCommand),
                                                                            (() => MP.IsExecutingSyncCommandIssuedBySelf),
@@ -94,7 +97,7 @@ public class MultiplayerCompat : IModPart
       When writing, the comp should never be null.  
      */
 #nullable enable
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser? comp)
     {
         if (sync.isWriting)
@@ -130,7 +133,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes? comp)
     {
         if (sync.isWriting)
@@ -166,7 +169,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncLoadout(SyncWorker sync, ref Loadout? loadout)
     {
         if (sync.isWriting)
@@ -180,7 +183,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    [SyncWorker]
+    //[SyncWorker]
     private static void SyncLoadoutSlot(SyncWorker sync, ref LoadoutSlot? loadoutSlot)
     {
         if (sync.isWriting)
@@ -223,7 +226,7 @@ public class MultiplayerCompat : IModPart
 
     // Don't sync anything, we just want a blank instance for method calling purposes
     // We only care about shouldConstruct being true
-    [SyncWorker(shouldConstruct = true)]
+    //[SyncWorker(shouldConstruct = true)]
     private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory? inventory)
     { }
 }
