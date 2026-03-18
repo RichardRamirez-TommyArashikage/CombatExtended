@@ -62,8 +62,11 @@ public class MultiplayerCompat : IModPart
             }
         }
 
-        MP.RegisterAll();
-
+        MP.RegisterSyncWorker<CompAmmoUser>(SyncCompAmmoUser);
+        MP.RegisterSyncWorker<CompFireModes>(SyncCompFireMode);
+        MP.RegisterSyncWorker<Loadout>(SyncLoadout);
+        MP.RegisterSyncWorker<LoadoutSlot>(SyncLoadoutSlot);
+        MP.RegisterSyncWorker<ITab_Inventory>(SyncITab_Inventory, shouldConstruct: true);
         global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommand), (() => MP.IsExecutingSyncCommandIssuedBySelf));
     }
 
