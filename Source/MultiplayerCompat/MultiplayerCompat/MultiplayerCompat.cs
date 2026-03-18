@@ -68,6 +68,7 @@ public class MultiplayerCompat : IModPart
         MP.RegisterSyncWorker<ITab_Inventory>(SyncITab_Inventory, shouldConstruct: true);
         global::CombatExtended.Compatibility.Multiplayer.registerCallbacks((() => MP.IsInMultiplayer), (() => MP.IsExecutingSyncCommand), (() => MP.IsExecutingSyncCommandIssuedBySelf));
     }
+#nullable enable
 
 
 
@@ -204,3 +205,5 @@ public class MultiplayerCompat : IModPart
     private static void SyncITab_Inventory(SyncWorker sync, ref ITab_Inventory inventory)
     { }
 }
+
+#nullable restore
