@@ -74,7 +74,7 @@ public class MultiplayerCompat : IModPart
     {
         if (sync.isWriting)
         {
-            var caster = comp.parent.GetComp<CompEquippable>().PrimaryVerb.Caster;
+            var caster = comp?.parent.GetComp<CompEquippable>().PrimaryVerb.Caster;
 
             // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
             // which causes it to be inaccessible in MP for general syncing
@@ -109,7 +109,7 @@ public class MultiplayerCompat : IModPart
     {
         if (sync.isWriting)
         {
-            var caster = comp.Caster;
+            var caster = comp?.Caster;
 
             // Sync the turret because in that case syncing fails, due to comp.parent.Map being null,
             // which causes it to be inaccessible in MP for general syncing
