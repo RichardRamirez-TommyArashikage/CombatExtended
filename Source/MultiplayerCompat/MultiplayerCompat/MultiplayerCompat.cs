@@ -70,9 +70,7 @@ public class MultiplayerCompat : IModPart
     }
 #nullable enable
 
-
-
-    private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser comp)
+    private static void SyncCompAmmoUser(SyncWorker sync, ref CompAmmoUser? comp)
     {
         if (sync.isWriting)
         {
@@ -107,7 +105,7 @@ public class MultiplayerCompat : IModPart
         }
     }
 
-    private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes comp)
+    private static void SyncCompFireMode(SyncWorker sync, ref CompFireModes? comp)
     {
         if (sync.isWriting)
         {
