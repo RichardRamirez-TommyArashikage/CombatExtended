@@ -13,7 +13,7 @@ public class Multiplayer : IPatch
     public bool CanInstall()
     {
         Log.Message("Combat Extended :: Checking Multiplayer Compat");
-        return ModLister.HasActiveModWithName("Multiplayer");
+        return ModLister.HasActiveModWithName("Multiplayer") || ModLister.GetActiveModWithIdentifier("rwmt.Multiplayer") != null || ModLister.HasActiveModWithName("Multiplayer [Continuous]");
     }
 
     public void Install()
