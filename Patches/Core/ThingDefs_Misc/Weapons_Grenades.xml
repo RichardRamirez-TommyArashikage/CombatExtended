@@ -106,6 +106,7 @@
 				<ballisticCoefficient>2.0~2.0</ballisticCoefficient>
 				<mass>400~400</mass>
 				<diameter>64~64</diameter>
+				<lerpPosition>true</lerpPosition>
 			</projectile>
 		</value>
 	</Operation>
@@ -208,7 +209,7 @@
 		</statBases>
 		<Properties>
 			<label>throw frag grenade</label>
-			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+			<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10.0</range>
 			<minRange>4</minRange>
