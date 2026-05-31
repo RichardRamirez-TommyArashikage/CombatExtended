@@ -85,6 +85,7 @@
 			<suppressionFactor>3.0</suppressionFactor>
 			<dangerFactor>2.0</dangerFactor>
 			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -168,6 +169,7 @@
 			<suppressionFactor>2.0</suppressionFactor>
 			<dangerFactor>1.5</dangerFactor>
 			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_ExplosiveCE">
@@ -254,7 +256,7 @@
 			<ballisticCoefficient>10.0~10.0</ballisticCoefficient>
 			<mass>1400~1500</mass>
 			<diameter>100~120</diameter>
-			<lerpPosition>true</lerpPosition>
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 		</projectile>
 	</ThingDef>
 
@@ -286,7 +288,7 @@
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
 				<label>throw stick bomb</label>
-				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>7.0</range>
 				<warmupTime>1.6</warmupTime>
@@ -327,6 +329,7 @@
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 			<speed>12</speed>
 			<screenShakeFactor>0</screenShakeFactor>
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 		</projectile>
 	</ThingDef>
 
@@ -357,7 +360,7 @@
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
 				<label>throw smoke grenade</label>
-				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>10</range>
 				<warmupTime>0.8</warmupTime>
@@ -404,6 +407,7 @@
 			<preExplosionSpawnChance>1</preExplosionSpawnChance>
 			<speed>12</speed>
 			<screenShakeFactor>0</screenShakeFactor>
+			<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 		</projectile>
 	</ThingDef>
 
@@ -434,7 +438,7 @@
 		<verbs>
 			<li Class="CombatExtended.VerbPropertiesCE">
 				<label>throw firefoam grenade</label>
-				<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+				<verbClass>CombatExtended.Verb_ThrowGrenade</verbClass>
 				<hasStandardCommand>true</hasStandardCommand>
 				<range>10</range>
 				<warmupTime>0.8</warmupTime>

@@ -106,7 +106,7 @@
 				<ballisticCoefficient>2.0~2.0</ballisticCoefficient>
 				<mass>400~400</mass>
 				<diameter>64~64</diameter>
-				<lerpPosition>true</lerpPosition>
+				<trajectoryWorker>CombatExtended.BallisticsTrajectoryWorker</trajectoryWorker>
 			</projectile>
 		</value>
 	</Operation>
