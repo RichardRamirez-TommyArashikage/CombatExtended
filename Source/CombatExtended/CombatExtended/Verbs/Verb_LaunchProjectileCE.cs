@@ -253,6 +253,7 @@ public class Verb_LaunchProjectileCE : Verb
         lastShootLine = null;
         repeating = false;
         storedShotReduction = null;
+        lastRecoilDeg = 0;
         didRetarget = false;
     }
 
@@ -1083,7 +1084,7 @@ public class Verb_LaunchProjectileCE : Verb
         didRetarget = Retarget();
         repeating = true;
         doRetarget = true;
-
+        storedShotReduction = null;
         var props = VerbPropsCE;
         var midBurst = numShotsFired > 0;
         var suppressing = CompFireModes?.CurrentAimMode == AimMode.SuppressFire;
