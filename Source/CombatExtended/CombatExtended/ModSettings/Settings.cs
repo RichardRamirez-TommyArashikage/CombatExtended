@@ -23,9 +23,10 @@ public class Settings : ModSettings, ISettingsCE
     private bool turretsBreakShields = true;
     private bool showBackpacks = true;
     private bool showTacticalVests = true;
-    private bool genericammo = false;
+    private bool genericAmmo = false;
     private bool partialstats = true;
     private bool enableExtraEffects = true;
+    private bool realWeaponNames = true;
 
     private bool enableArcOfFire = false;
 
@@ -36,6 +37,7 @@ public class Settings : ModSettings, ISettingsCE
 
     private bool showExtraTooltips = false;
     private bool detailedMeleeTooltip = false;
+    private bool nonPlayerMeleeTooltip = false;
 
     private bool showExtraStats = false;
 
@@ -60,7 +62,7 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool BipodMechanics => bipodMechanics;
 
-    public bool GenericAmmo => genericammo;
+    public bool GenericAmmo => genericAmmo;
     public bool AutoSetUp => autosetup;
     public bool ShowTaunts => showTaunts;
     public bool AllowMeleeHunting => allowMeleeHunting;
@@ -74,8 +76,10 @@ public class Settings : ModSettings, ISettingsCE
 
     public bool PartialStat => partialstats;
     public bool EnableExtraEffects => enableExtraEffects;
+    public bool RealWeaponNames => realWeaponNames;
     public bool ShowExtraTooltips => showExtraTooltips;
     public bool DetailedMeleeTooltip => detailedMeleeTooltip;
+    public bool NonPlayerMeleeTooltip => nonPlayerMeleeTooltip;
 
     public bool ShowExtraStats => showExtraStats;
     public bool EnableCIWS => enableCIWS;
@@ -184,6 +188,8 @@ public class Settings : ModSettings, ISettingsCE
 
     #region Compatibility Modsettings
     public bool patchArmorDamage = true;
+    public bool hitRandomVehicleComponents = true;
+    public bool fragmentsFromVehicles = false;
 
     #endregion
 
@@ -208,11 +214,13 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref enableExtraEffects, "enableExtraEffects", true);
         Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
         Scribe_Values.Look(ref detailedMeleeTooltip, "detailedMeleeTooltip", false);
+        Scribe_Values.Look(ref nonPlayerMeleeTooltip, "nonPlayerMeleeTooltip", false);
         Scribe_Values.Look(ref enableArcOfFire, "enableArcOfFire", false);
 
         Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
         Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
         Scribe_Values.Look(ref logUnpatchedDefs, "logUnpatchedDefs", false);
+        Scribe_Values.Look(ref realWeaponNames, "realWeaponNames", true);
 
 #if DEBUG
         // Debug settings
@@ -251,7 +259,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref forbiddenNeolithicProjectiles, "forbiddenNeolithicProjectiles", true);
         Scribe_Values.Look(ref realisticCookOff, "realisticCookOff", true);
         Scribe_Values.Look(ref stuckArrowsAsFlecks, "stuckArrowsAsFlecks", true);
-        Scribe_Values.Look(ref genericammo, "genericAmmo", false);
+        Scribe_Values.Look(ref genericAmmo, "genericAmmo", false);
 
         Scribe_Values.Look(ref ShowTutorialPopup, "ShowTutorialPopup", true);
 
@@ -277,7 +285,13 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref opportunisticReloadMode, nameof(opportunisticReloadMode), OpportunisticReloadMode.Any);
         Scribe_Values.Look(ref opportunisticReloadSafeDistance, nameof(opportunisticReloadSafeDistance), 12.9f);
         Scribe_Values.Look(ref secondsAfterFightToOpportunisticReload, nameof(secondsAfterFightToOpportunisticReload), 5);
+
+        // Compatibility
+        Scribe_Values.Look(ref patchArmorDamage, "patchArmorDamage", true);
+        Scribe_Values.Look(ref hitRandomVehicleComponents, "hitRandomVehicleComponents", true);
+        Scribe_Values.Look(ref fragmentsFromVehicles, "fragmentsFromVehicles", false);
     }
+
     public void DoWindowContents(Listing_Standard list)
     {
         switch (Controller.SelectedTab)
@@ -385,7 +399,7 @@ public class Settings : ModSettings, ISettingsCE
                 list.CheckboxLabeled("CE_Settings_ForbiddenNeolithicProjectiles_Title".Translate(), ref forbiddenNeolithicProjectiles, "CE_Settings_ForbiddenNeolithicProjectiles_Desc".Translate());
             }
             list.CheckboxLabeled("CE_Settings_RealisticCookOff_Title".Translate(), ref realisticCookOff, "CE_Settings_RealisticCookOff_Desc".Translate());
-            list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericammo, "CE_Settings_GenericAmmo_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_GenericAmmo".Translate(), ref genericAmmo, "CE_Settings_GenericAmmo_Desc".Translate());
         }
         else
         {
@@ -425,8 +439,10 @@ public class Settings : ModSettings, ISettingsCE
         list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_DetailedMeleeTooltip_Title".Translate(), ref detailedMeleeTooltip, "CE_Settings_DetailedMeleeTooltip_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_NonPlayerMeleeTooltip_Title".Translate(), ref nonPlayerMeleeTooltip, "CE_Settings_NonPlayerMeleeTooltip_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_VariedHumanHeight_Title".Translate(), ref variedHumanHeight, "CE_Settings_VariedHumanHeight_Desc".Translate());
         list.CheckboxLabeled("CE_Settings_LogUnpatchedDefs_Title".Translate(), ref logUnpatchedDefs, "CE_Settings_LogUnpatchedDefs_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_RealWeaponNames_Title".Translate(), ref realWeaponNames, "CE_Settings_RealWeaponNames_Desc".Translate());
         list.Gap();
         list.GapLine();
         list.Gap();
@@ -557,7 +573,7 @@ public class Settings : ModSettings, ISettingsCE
         reuseNeolithicProjectiles = true;
         forbiddenNeolithicProjectiles = true;
         realisticCookOff = true;
-        genericammo = false;
+        genericAmmo = false;
         LastAmmoSystemStatusChanged();
 
     }
@@ -577,6 +593,7 @@ public class Settings : ModSettings, ISettingsCE
         showExtraTooltips = false;
         showExtraStats = false;
         detailedMeleeTooltip = false;
+        nonPlayerMeleeTooltip = false;
         // AutoPatcher Settings
         debugAutopatcherLogger = false;
         enableApparelAutopatcher = false;
@@ -586,6 +603,7 @@ public class Settings : ModSettings, ISettingsCE
         enablePawnKindAutopatcher = true;
         variedHumanHeight = false;
         logUnpatchedDefs = false;
+        realWeaponNames = true;
 
 #if DEBUG
         debuggingMode = false;
@@ -602,6 +620,10 @@ public class Settings : ModSettings, ISettingsCE
         debugDisplayCellCoverRating = false;
         debugWorldShellingDamageRandomness = false;
 #endif
+        // Compatibility Settings
+        patchArmorDamage = true;
+        hitRandomVehicleComponents = true;
+        fragmentsFromVehicles = false;
     }
     #endregion
 

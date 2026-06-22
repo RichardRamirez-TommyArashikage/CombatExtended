@@ -124,6 +124,7 @@ Arrow Please (Continued)    |
 Asimov  |
 Aspero Race |
 Astoriel Legacy |
+Astrofuel gear  |
 Astra Militarum Regimentum - Cadia  |
 Astra Militarum Regimentum - Krieg  |
 Astra Militarum Regimentum - Krieg: Officer Helmet  |
@@ -135,6 +136,8 @@ Beeralope Squad	|
 Beliar Xenotype |
 Beta Anime Hair	|
 Beta Girls und Panzer Hair and Apparel	|
+Better Grenade Handling |
+Better Traders Guild    |
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
 Big and Small - Heaven and Hell
@@ -143,6 +146,8 @@ Big and Small - Medieval Overhaul Factions	|
 Big and Small - Races	|
 Big and Small - Vampires and the Undead  |
 Big and Small - Weapons	|
+Bioferrite Chainsaw |
+Biological Warfare  |
 Biomes! Caverns	|
 Biomes! Core	|
 Biomes! Polluted Lands  |
@@ -213,6 +218,7 @@ Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
 Edo Themed Expansion	|
 Eltex Bodysuit  |
+Eltex Weaponry (Continued)  |
 Enchanted Sword  |
 Epochs - Pyrinth    |
 Epona The centaur race  |
@@ -230,6 +236,7 @@ Erin's Fox Squirrel |
 Erin's Lizard Doggo |
 Erin's Miqo'te  |
 Erin's Mountain Animals |
+Erin's Rhy'aeth |
 Erin's Sephyr   |
 Erin's Shisune   |
 Erin's Valheim Creatures   |
@@ -271,6 +278,7 @@ Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Gestalt Engine  |
 Giddy-Up 2    |
+Girls' Frontline 2 Nagan Apparel    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline PROJECT NEURAL CLOUD   |
 Girls' Frontline Styles - 404 Team	|
@@ -303,6 +311,7 @@ GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
 Half Dragons    |
+Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
@@ -335,11 +344,11 @@ Kemomimihouse Kz |
 Kenshi Armory |
 Kerberos Protect Gears and Firearms	|
 K.L.K - Styles Apparel Pack	|
-Kijin Race 3.0     	|     
+Kijin Race 3.0     	|
 Kill la Kill Styles Pack    |
 Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
-Kit's Industrial Weapons |   
+Kit's Industrial Weapons |
 Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
@@ -457,6 +466,7 @@ Persona Warcasket Weapons   |
 Plasma Weapons Pack   |
 Polarisbloc - Security Force	|
 Poleepkwa Race	|
+Ponpeco Kids' Clothes   |
 Possessed Weapons	|
 pphhyy's Demigryphs   |
 phynilla Expanded Mechs Scyther |
@@ -498,6 +508,7 @@ Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
+Rim Of Evil: Northern Frontier |
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
 Rim of Madness - Werewolves	|
@@ -509,7 +520,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 Rim-Elves   |
-Rim-Gnoblins	| 
+Rim-Gnoblins	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Robots_	|
@@ -519,6 +530,7 @@ RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimNauts 2 |
+RimOfTheFallen |
 Rimrats |
 RimSec Security |
 Rimsenal - Core |
@@ -559,7 +571,7 @@ Simply More Melee	|
 Slime Rancher	|
 Solark Race |
 Spacer Arsenal  |
-Spacer Pack |
+Spacer Pack - Repackaged |
 Spacer Shields	|
 Space Worms (Continued) |
 Spartan Foundry	|
@@ -590,6 +602,7 @@ The Joris Experience	|
 The Tuffalo |
 The Sims Traits |
 Thog's Armor    |
+Thog's Guns - Lead and Powder Pack REPRIMED 1.6  |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
 Titan Vehicles Continued |
@@ -634,6 +647,7 @@ Vanilla Factions Expanded - Settlers	|
 Vanilla Factions Expanded - Tribals |
 Vanilla Furniture Expanded - Production	|
 Vanilla Furniture Expanded -  Security |
+Vanilla Furniture Expanded -  Factory |
 Vanilla Genetics Expanded   |
 Vanilla Ideology Expanded - Dryads  |
 Vanilla Ideology Expanded - Hats and Rags |
@@ -647,6 +661,7 @@ Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Quests Expanded - Ancients  |
 Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Deadlife  |
+Vanilla Quests Expanded - Drone Factory  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |
@@ -655,6 +670,7 @@ Vanilla Races Expanded - Hussar  |
 Vanilla Races Expanded - Insector  |
 Vanilla Races Expanded - Lycanthrope  |
 Vanilla Races Expanded - Phytokin  |
+Vanilla Races Expanded - Pigskin  |
 Vanilla Races Expanded - Sanguophage  |
 Vanilla Races Expanded - Saurid  |
 Vanilla Skills Expanded  |

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +39,7 @@ public class Building_TurretGunCE : Building_Turret
     public CompCanBeDormant dormantComp;
     public CompInitiatable initiatableComp;
     public CompMannable mannableComp;
-
+    public CompHackable hackableComp;
     public static Material ForcedTargetLineMat = MaterialPool.MatFrom(GenDraw.LineTexPath, ShaderDatabase.Transparent, new Color(1f, 0.5f, 0.5f));
 
     // New fields
@@ -56,7 +56,10 @@ public class Building_TurretGunCE : Building_Turret
 
     #region Properties
     // Core properties
-    public virtual bool Active => (powerComp == null || powerComp.PowerOn) && (dormantComp == null || dormantComp.Awake) && (initiatableComp == null || initiatableComp.Initiated);
+    public virtual bool Active => (powerComp == null || powerComp.PowerOn) &&
+                                   (dormantComp == null || dormantComp.Awake) &&
+                                   (initiatableComp == null || initiatableComp.Initiated) &&
+                                   (hackableComp == null || !hackableComp.IsHacked);
     public CompEquippable GunCompEq => Gun.TryGetComp<CompEquippable>();
     public NonSnapTurretExtension NonSnapExtension => def.GetModExtension<NonSnapTurretExtension>();
     public bool NonSnap => NonSnapExtension != null;
@@ -153,7 +156,7 @@ public class Building_TurretGunCE : Building_Turret
             return compFireModes;
         }
     }
-    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)compAmmo?.CurAmmoProjectile?.projectile ?? null;
+    private ProjectilePropertiesCE ProjectileProps => (ProjectilePropertiesCE)Projectile?.projectile;
     public float MaxWorldRange => ProjectileProps?.shellingProps.range ?? -1f;
     public bool EmptyMagazine => CompAmmo?.EmptyMagazine ?? false;
     public bool FullMagazine => CompAmmo?.FullMagazine ?? false;
@@ -179,6 +182,7 @@ public class Building_TurretGunCE : Building_Turret
         initiatableComp = GetComp<CompInitiatable>();
         powerComp = GetComp<CompPowerTrader>();
         mannableComp = GetComp<CompMannable>();
+        hackableComp = GetComp<CompHackable>();
 
         if (!everSpawned && (!Map.IsPlayerHome || Faction != Faction.OfPlayer))
         {
@@ -740,7 +744,7 @@ public class Building_TurretGunCE : Building_Turret
                 yield return com;
             }
         }
-        if (IsMortar && Active && Faction.IsPlayerSafe() && (compAmmo?.UseAmmo ?? false) && ProjectileProps?.shellingProps != null)
+        if (IsMortar && Active && Faction.IsPlayerSafe() && ProjectileProps?.shellingProps != null)
         {
             Command_ArtilleryTarget wt = new Command_ArtilleryTarget()
             {

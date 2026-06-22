@@ -17,6 +17,7 @@ public class CompAmmoUser : CompRangedGizmoGiver
     #region Fields
 
     private int curMagCountInt = 0;
+    [Compatibility.Multiplayer.SyncFieldAttribute]
     private int tryReloadOn = 0;
     protected AmmoDef currentAmmoInt = null;
     protected AmmoDef selectedAmmo;
@@ -56,6 +57,36 @@ public class CompAmmoUser : CompRangedGizmoGiver
             return 0;
         }
     }
+
+    public int MagsLeftReadOnly
+    {
+        get
+        {
+            if (CompInventory != null)
+            {
+                int count = 0;
+                foreach (AmmoLink link in CurAmmoSet.ammoTypes)
+                {
+                    count += CompInventory.AmmoCountOfDef(link.ammo);
+                }
+                return count;
+            }
+            return 0;
+        }
+    }
+
+    public int MagsLeftSameTypeReadOnly
+    {
+        get
+        {
+            if (CompInventory != null)
+            {
+                return CompInventory.AmmoCountOfDef(CurrentAmmo);
+            }
+            return 0;
+        }
+    }
+
     public int MagSize
     {
         get
@@ -83,7 +114,14 @@ public class CompAmmoUser : CompRangedGizmoGiver
     public int TryReloadOn
     {
         get => tryReloadOn;
-        set => tryReloadOn = value;
+        set
+        {
+            if (tryReloadOn != value)
+            {
+                tryReloadOn = value;
+                Compatibility.Multiplayer.syncField(this, nameof(tryReloadOn), value);
+            }
+        }
     }
     public float SafeDistanceToReload => Controller.settings.OpportunisticReloadSafeDistance;
 
