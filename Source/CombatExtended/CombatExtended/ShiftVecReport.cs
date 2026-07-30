@@ -113,9 +113,22 @@ public class ShiftVecReport
                 {
                     se = 0.02f;
                 }
-                visibilityShiftInt = environmentShift * (shotDist / 50 / se) * (2 - aimingAccuracy);
+                visibilityShiftInt = environmentShift * (shotDist / 50 / se) * (2 - aimingAccuracy) * concealmentFactor;
             }
             return visibilityShiftInt;
+        }
+    }
+
+    public float concealmentFactor
+    {
+        get
+        {
+            if (targetPawn != null)
+            {
+                return targetPawn.GetStatValue(CE_StatDefOf.ConcealmentEfficiency);
+            }
+
+            return 1f;
         }
     }
 
@@ -274,6 +287,10 @@ public class ShiftVecReport
         if (smokeDensity > 0)
         {
             stringBuilder.AppendLine("      " + "CE_SmokeDensity".Translate() + "\t" + AsPercent(smokeDensity));
+        }
+        if (visibilityShift > 0 && !Mathf.Approximately(concealmentFactor, 1f))
+        {
+            stringBuilder.AppendLine("      " + "CE_Concealment".Translate() + "\t" + AsPercent(concealmentFactor));
         }
         if (leadShift > 0)
         {
