@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+
+<!-- explosiveExpandPerStackcount: Add missing "CompProperties_Explosive" and "explosiveExpandPerStackcount" to grenades and shells. -->
+<Operation Class="PatchOperationAdd">
+  <xpath>Defs/ThingDef[detonateProjectile and not(comps)]</xpath>
+  <value>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveExpandPerStackcount>0.5</explosiveExpandPerStackcount>
+      </li>
+    </comps>
+  </value>
+</Operation>
+
+<!-- explosiveExpandPerStackcount: Add missing "explosiveExpandPerStackcount" to existing "CompProperties_Explosive". -->
+<Operation Class="PatchOperationAdd">
+  <xpath>//li[@Class="CompProperties_Explosive" and not(explosiveExpandPerStackcount)]</xpath>
+  <value>
+    <explosiveExpandPerStackcount>0.5</explosiveExpandPerStackcount>
+  </value>
+</Operation>
+
+
+</Patch>
