@@ -1,0 +1,144 @@
+using System.Collections.Generic;
+using System.Reflection;
+using System.Reflection.Emit;
+using HarmonyLib;
+using UnityEngine;
+using Verse;
+using CombatExtended;
+
+namespace Simplify_CETeam.CombatExtended_AmmoThing
+{
+    [StaticConstructorOnStartup]
+    public static class Main
+    {
+        static Main()
+        {
+            var harmony = new Harmony("Simplify-CETeam.CombatExtended_AmmoThing");
+            harmony.PatchAll();
+        }
+    }
+
+    [HarmonyPatch(typeof(CombatExtended.AmmoThing), "PreApplyDamage")]
+    public static class AmmoThing_PreApplyDamage_Patch
+    {
+        public static IEnumerable<CodeInstruction> Transpiler(
+            IEnumerable<CodeInstruction> instructions)
+        {
+            MethodInfo original = AccessTools.Method(
+                typeof(CombatExtended.AmmoThing),
+                "TryDetonate",
+                new[] { typeof(float) });
+
+            MethodInfo replacement = AccessTools.Method(
+                typeof(AmmoThing_PreApplyDamage_Patch),
+                nameof(ForceLethalDetonation));
+
+            foreach (CodeInstruction instruction in instructions)
+            {
+                if (instruction.Calls(original))
+                {
+                    yield return new CodeInstruction(
+                        OpCodes.Call,
+                        replacement);
+                }
+                else
+                {
+                    yield return instruction;
+                }
+            }
+        }
+
+        private static bool ForceLethalDetonation(
+            CombatExtended.AmmoThing ammo,
+            float stackCountScale)
+        {
+            if (ammo.Map == null ||
+                Find.Maps.IndexOf(ammo.Map) < 0)
+            {
+                return false;
+            }
+
+            CombatExtended.CompExplosiveCE comp =
+                ammo.TryGetComp<CombatExtended.CompExplosiveCE>();
+
+            var detProps =
+                ammo.AmmoDef?.detonateProjectile?.projectile;
+
+            if (comp == null && detProps == null)
+            {
+                return false;
+            }
+
+            float scale = Mathf.Pow(stackCountScale, 0.333f);
+
+            if (comp != null)
+            {
+                comp.Explode(
+                    ammo,
+                    ammo.Position.ToVector3Shifted(),
+                    ammo.Map,
+                    scale,
+                    null,
+                    new List<Thing>
+                    {
+                        ammo
+                    });
+            }
+            else
+            {
+                ammo.TryGetComp<CombatExtended.CompFragments>()?.Throw(
+                    ammo.Position.ToVector3Shifted(),
+                    ammo.Map,
+                    ammo);
+            }
+
+            if (detProps != null)
+            {
+                CombatExtended.GenExplosionCE.DoExplosion(
+                    ammo.Position,
+                    ammo.Map,
+                    detProps.explosionRadius,
+                    detProps.damageDef,
+                    instigator: ammo,
+                    detProps.GetDamageAmount(1f, null),
+                    detProps.GetExplosionArmorPenetration(),
+                    detProps.soundExplode,
+                    weapon: null,
+                    projectile: ammo.def,
+                    intendedTarget: null,
+                    detProps.postExplosionSpawnThingDef,
+                    detProps.postExplosionSpawnChance,
+                    detProps.postExplosionSpawnThingCount,
+                    detProps.postExplosionGasType,
+                    null,
+                    255,
+                    detProps.applyDamageToExplosionCellsNeighbors,
+                    detProps.preExplosionSpawnThingDef,
+                    detProps.preExplosionSpawnChance,
+                    detProps.preExplosionSpawnThingCount,
+                    detProps.explosionChanceToStartFire,
+                    detProps.explosionDamageFalloff,
+                    null,
+                    new List<Thing>
+                    {
+                        ammo
+                    },
+                    affectedAngle: null,
+                    doVisualEffects: true,
+                    propagationSpeed: 1f,
+                    excludeRadius: 0,
+                    doSoundEffects: true,
+                    detProps.postExplosionSpawnThingDefWater,
+                    detProps.screenShakeFactor,
+                    null,
+                    null,
+                    detProps.postExplosionSpawnSingleThingDef,
+                    detProps.preExplosionSpawnSingleThingDef,
+                    height: 0f,
+                    scale);
+            }
+
+            return true;
+        }
+    }
+}
