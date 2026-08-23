@@ -1,0 +1,44 @@
+using HarmonyLib;
+using RimWorld;
+using Verse;
+
+namespace Simplify_Filth_Various
+{
+    [StaticConstructorOnStartup]
+    public static class Simplify_Filth_Various
+    {
+        static Simplify_Filth_Various()
+        {
+            var harmony = new Harmony("Simplify.Filth.Various");
+            harmony.PatchAll();
+        }
+    }
+
+    [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
+    public static class Patch_Thing_TakeDamage
+    {
+        public static bool Prefix(Thing __instance, DamageInfo dinfo)
+        {
+            ThingDef def = __instance.def;
+
+            // Only affect filth.
+            if (def.category != ThingCategory.Filth)
+                return true;
+
+            // Must either use hit points or have MaxHitPoints.
+            if (!def.useHitPoints && def.BaseMaxHitPoints <= 0)
+                return true;
+
+            // Must be flammable.
+            if (__instance.GetStatValue(StatDefOf.Flammability) <= 0f)
+                return true;
+
+            // Ignore all explosive damage.
+            if (dinfo.Def != null && dinfo.Def.isExplosive)
+                return false;
+
+            // Everything else behaves normally.
+            return true;
+        }
+    }
+}
