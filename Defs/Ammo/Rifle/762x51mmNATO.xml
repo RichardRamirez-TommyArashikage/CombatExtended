@@ -136,6 +136,7 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
+      <armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 			<speed>156</speed>
 			<dropsCasings>true</dropsCasings>
 		</projectile>
@@ -147,7 +148,6 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>7</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -157,7 +157,6 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationSharp>14</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -167,7 +166,6 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>25</damageAmountBase>
 			<armorPenetrationSharp>4</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
@@ -177,7 +175,6 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>12</damageAmountBase>
 			<armorPenetrationSharp>14</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
@@ -193,7 +190,6 @@
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>20</damageAmountBase>
 			<armorPenetrationSharp>7</armorPenetrationSharp>
-			<armorPenetrationBlunt>66.72</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
